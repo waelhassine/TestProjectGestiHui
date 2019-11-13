@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Modifier Vente Huile</h1>
+<form [formGroup]="editGrignonsform" (ngSubmit)="onSubmit(editGrignonsform.value)" >
+
+          <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Vehicule" formControlName="vehicule">
+            
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Matricule" formControlName="matricule">
+            
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="text" placeholder="Transporteur" formControlName="transporteur">
+            
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <input matInput type="text" placeholder="Chauffeur" formControlName="chaufeur">
+                
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="number" step="1" min="0" placeholder="Poids" formControlName="poids" (change)="onSearchChangea($event.target.value)">
+                <span matSuffix>L</span>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="number" step="0.1" min="0" placeholder="Prix Unitaire" formControlName="prix_unitaire" (change)="onSearchChangeb($event.target.value)">
+                    <span matSuffix>DT</span>
+                </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Montant Vente" formControlName="montantAchat">
+                </mat-form-field>         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="fermerDialog()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="editGrignonsform.pristine || editGrignonsform.invalid" type="submit"  >Ajouter</button>
+          </div>
+        </div>
+
+      </form>

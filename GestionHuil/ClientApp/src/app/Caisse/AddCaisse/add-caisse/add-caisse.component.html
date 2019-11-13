@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Ajouter</h1>
+<form [formGroup]="createclientForm" (ngSubmit)="onSubmit(createclientForm.value)" >
+  
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Montant" formControlName="montant">
+          <mat-error *ngIf="hasError('montant', 'required')">Montant is required</mat-error>
+        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Personne" formControlName="personne">
+            <mat-error *ngIf="hasError('personne', 'required')">Personne is required</mat-error>
+            </mat-form-field>
+        <div class="form-element">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  type="reset"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="createclientForm.pristine || createclientForm.invalid" type="submit"  >Ajouter</button>
+        </div>
+        </div>
+
+      </form>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Ajouter</h1>
+<form [formGroup]="ajouterReglementForm" (ngSubmit)="onSubmit(ajouterReglementForm.value)" >
+
+         <mat-form-field class="example-full-width">
+                <input matInput placeholder="Montant" formControlName="montant">
+         </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Type De Paiement</mat-label>
+              <mat-select formControlName="modeReglement">
+                <mat-option  value="Espece">Espéce </mat-option>
+                <mat-option  value="Cheque">chèque </mat-option>
+              </mat-select>
+          <mat-error *ngIf="hasError('modeReglement', 'required')">Type De Paiement is required</mat-error>
+
+        </mat-form-field>
+        <div class="form-element">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  type="reset"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="ajouterReglementForm.pristine || ajouterReglementForm.invalid" type="submit"  >Ajouter</button>
+        </div>
+        </div>
+      </form>

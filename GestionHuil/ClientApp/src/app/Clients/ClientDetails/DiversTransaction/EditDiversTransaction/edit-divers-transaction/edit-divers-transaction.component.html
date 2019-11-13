@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>Ajouter</h1>
+<form [formGroup]="editDiversTransactionForm" (ngSubmit)="onSubmit(editDiversTransactionForm.value)" >
+           <mat-form-field class="example-full-width">
+                <mat-label>Type Transaction</mat-label>
+              <mat-select formControlName="typeTransaction">
+                <mat-option  value="AvanceParSociete">Avance Par le Societe </mat-option>
+                <mat-option  value="AvanceParClient">Avance Par le client </mat-option>
+              </mat-select>
+                <mat-error *ngIf="hasError('typeTransaction', 'required')">Type Transaction is required</mat-error>
+          </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <input matInput placeholder="Montant" formControlName="montant">
+         </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label>Type De Paiement</mat-label>
+              <mat-select formControlName="typeDePaiement">
+                <mat-option  value="Espece">Espéce </mat-option>
+                <mat-option  value="Cheque">chèque </mat-option>
+              </mat-select>
+          <mat-error *ngIf="hasError('typeDePaiement', 'required')">Type De Paiement is required</mat-error>
+
+        </mat-form-field>
+        <div class="form-element">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  type="reset"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="editDiversTransactionForm.pristine || editDiversTransactionForm.invalid" type="submit"  >Modifier</button>
+        </div>
+        </div>
+      </form>

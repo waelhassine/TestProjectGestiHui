@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Ajouter Stockage Olive</h1>
+<form [formGroup]="createstockageForm" (ngSubmit)="onSubmit(createstockageForm.value)" >
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Client" aria-label="Client" matInput formControlName="clientId" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filteredClients | async" [value]="option" >
+                {{option.nom}} |
+                <small>Tel: {{option.tel}}</small>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="hasError('clientId', 'required')">Client is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-label>Variete</mat-label>
+              <mat-select formControlName="varieteId">
+                <mat-option *ngFor="let option of varietebase" [value]="option.id">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Poids" formControlName="poids">
+            <span matSuffix>Kg</span>
+            <mat-error *ngIf="hasError('poids', 'required')">Poids is required</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <input matInput type="text" placeholder="Vehicule" formControlName="vehicule">
+                
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="text" placeholder="Chauffeur" formControlName="chauffeur">
+                    
+                </mat-form-field>
+
+           
+         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="onNoClick()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="createstockageForm.pristine || createstockageForm.invalid" type="submit"  >Ajouter</button>
+          </div>
+        </div>
+
+      </form>

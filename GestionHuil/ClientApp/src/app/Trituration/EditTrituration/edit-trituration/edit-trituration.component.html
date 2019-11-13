@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>Modifier Trituration</h1>
+<form [formGroup]="edittriturationform" (ngSubmit)="onSubmit(edittriturationform.value)" >
+    <mat-form-field class="example-full-width">
+        <input matInput type="number" step="1" min="0"  placeholder="Poids"  formControlName="poids">
+        <span matSuffix>Kg</span>
+ </mat-form-field>
+          <mat-form-field class="example-full-width">
+                <input matInput type="number" step="1" min="0"  placeholder="Huile Obtenu"  formControlName="huileObtenu" (change)="onSearchChangea($event.target.value)">
+
+                <span matSuffix>L</span>
+               
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Rendement" formControlName="rendement" >
+            <span matSuffix>%</span>
+        </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <input matInput type="number" step="0.1" min="0" placeholder="Prix Unitaire"  formControlName="prixUnitaire" (change)="onSearchChangeb($event.target.value)">
+         </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Qte Livree" min="0" max="qteLocale"  (change)="onSearchChangec($event.target.value)" formControlName="qteLivree">
+                    <span matSuffix>L</span>
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Huile Restante" formControlName="huileRestante" >
+            <span matSuffix>L</span>
+        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Montant" formControlName="montant">
+            <span matSuffix>DT</span>
+        </mat-form-field>
+           
+         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="fermerDialog()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="edittriturationform.invalid" type="submit"  >Modifer</button>
+          </div>
+        </div>
+
+      </form>

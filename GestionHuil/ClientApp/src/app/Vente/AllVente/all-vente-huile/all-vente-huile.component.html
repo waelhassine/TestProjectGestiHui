@@ -1,0 +1,139 @@
+<div class="headercontact">
+    <h1>Vente Huile</h1>
+    <div fxLayout="row" >
+      <div fxFlex="20" class="showbox z-depth-2">    
+              <div fxFlex="88">
+                      <h2 matBadge="4" matBadgeOverlap="false"> {{datasourceStatistique[0].qte_En_Stock}} L</h2>
+                      <h4>CHEIBI  - {{datasourceStatistique[0].prix_unitaire}}DT</h4>
+              </div>  
+              <div fxFlex="22">
+                      <i class="material-icons md-48 z-depth-4 ">swap_horizontal_circle</i>
+              </div> 
+                           
+      </div>
+      <div fxFlex="20" class="showbox z-depth-2">
+              <div fxFlex="88">
+                      <h2 matBadge="4" matBadgeOverlap="false">{{datasourceStatistique[1].qte_En_Stock}} L</h2>
+                      <h4>OCTOBRI  -  {{datasourceStatistique[1].prix_unitaire}} DT</h4>
+              </div>  
+              <div fxFlex="22">
+                      <i class="material-icons testa md-48 z-depth-4 ">tab_unselected</i>
+              </div> 
+          </div>
+      <div fxFlex="20" class="showbox z-depth-2">
+              <div fxFlex="88">
+                      <h2 matBadge="4" matBadgeOverlap="false">{{datasourceStatistique[2].qte_En_Stock}} L</h2>
+                      <h4>MIXT   -  {{datasourceStatistique[2].prix_unitaire}} DT</h4>
+              </div>  
+              <div fxFlex="22">
+                      <i class="material-icons testb md-48 z-depth-4 ">swap_vertical_circle</i>
+              </div> 
+              </div>
+      <div fxFlex="20" class="showbox z-depth-2">
+              <div fxFlex="88">
+                      <h2 matBadge="4" matBadgeOverlap="false">{{datasourceStatistique[3].qte_En_Stock}} L</h2>
+                      <h4>ARBAKINA  -  {{datasourceStatistique[3].prix_unitaire}} DT</h4>
+              </div>  
+              <div fxFlex="22">
+                      <i class="material-icons testc md-48 z-depth-4 ">toll</i>
+              </div> 
+       </div>
+       <div fxFlex="20" class="showbox z-depth-2">
+              <div fxFlex="88">
+                      <h2 matBadge="4" matBadgeOverlap="false">{{datasourceStatistique[4].qte_En_Stock}} L</h2>
+                      <h4>SAHLI  -  {{datasourceStatistique[4].prix_unitaire}} DT</h4>
+              </div>  
+              <div fxFlex="22">
+                      <i class="material-icons testc md-48 z-depth-4 ">branding_watermark</i>
+              </div> 
+       </div>
+  </div>
+</div>
+
+    <mat-card>
+        <div  fxLayout="row" fxLayoutAlign="end center" class="filter">
+            <div class="formfilter">
+              <mat-form-field appearance="outline">
+                <input matInput matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Rechercher">
+                <mat-icon matSuffix>search</mat-icon>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                        <input matInput placeholder="Du .. Au" [satDatepicker]="picker2" (dateChange)="addEvent($event)">
+                        <sat-datepicker #picker2 [rangeMode]="true" > 
+                        </sat-datepicker>
+                        <sat-datepicker-toggle matSuffix [for]="picker2"></sat-datepicker-toggle>
+              </mat-form-field>
+                   <mat-icon *ngIf = '!isShow' color="warn" (click)="OnCloseFilter()">youtube_searched_for</mat-icon>
+          </div>
+              </div>  
+              <mat-card>
+                <div class="example-loading-shade" *ngIf="isLoadingResults">
+             <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+              </div>
+ <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 ">
+    <!-- Position Column --> 
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Id. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date| date:'yyyy-MM-dd HH:mm'}} </td>
+    </ng-container>
+   <!-- Weight Column -->
+   <ng-container matColumnDef="client.nom">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
+    <td mat-cell *matCellDef="let element"> {{element.client.nom}} </td>
+  </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="variete.name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Variete </th>
+      <td mat-cell *matCellDef="let element"> {{element.variete.name}} </td>
+    </ng-container>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="qte_Vente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Qte Vente </th>
+        <td mat-cell *matCellDef="let element"> {{element.qte_Vente}} L</td>
+      </ng-container>
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="prix_Unitaire">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Prix Unitaire </th>
+        <td mat-cell *matCellDef="let element"> {{element.prix_Unitaire}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="montantBidon">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Montant Bidon </th>
+        <td mat-cell *matCellDef="let element"> {{element.prix_bidon * element.qte_bidon}} DT</td>
+      </ng-container>
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="montantVente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
+        <td mat-cell *matCellDef="let element"> {{element.montantVente}} DT</td>
+      </ng-container>
+      <!-- Symbol Column -->
+     
+      <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef > Action </th>
+          <td mat-cell  *matCellDef="let element">
+          <button mat-button color="primary" (click)="OnEdit(element.id)"><mat-icon>create</mat-icon></button>
+          <!-- <button mat-button color="accent" (click)="OnExportPdf(element.id)"><mat-icon>post_add</mat-icon></button> -->
+          <button mat-button color="warn" (click)="OnDelete(element.id)"><mat-icon>delete_sweep</mat-icon></button>
+          <button mat-button color="primary" (click)="OnCreateFacture(element)"><mat-icon>add</mat-icon></button>
+          
+        </td>
+      </ng-container>
+    <!-- Symbol Column -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row  *matRowDef="let row; columns: displayedColumns;" [ngClass]="{hovered: row.hovered, highlighted: row.highlighted}" (mouseover)="row.hovered = true" (mouseout)="row.hovered = false"></tr>
+     
+   
+   </table> 
+   <mat-paginator [pageSize]="8" [pageSizeOptions]="[8, 20, 30, 40, 100]" class="mat-elevation-z8 "></mat-paginator>
+</mat-card>
+ <div class="button_create">
+    <button mat-fab color="primary" (click)="OnCreate()">
+      <mat-icon>add</mat-icon>
+    </button> 
+  </div>  
+

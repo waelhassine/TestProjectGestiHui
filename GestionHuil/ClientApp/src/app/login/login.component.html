@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutAlign=" none" >
+   
+    <div fxFlex="30%">
+    <div  fxFlexAlign="center"> 
+      <div class="signin-content">
+        <mat-card>
+          <mat-card-content>
+            <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+              <img src="../../assets/logogestion.png" height="60%" width="60%">
+              <br>
+              <br>
+              <mat-form-field appearance="outline" class="full-width-input">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="Email" formControlName="email" required>
+                <mat-error *ngIf="isFieldInvalid('email')">
+                    s'il vous plaît écrivez votre email
+                </mat-error>
+                  <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+              </mat-form-field>
+              <mat-form-field  appearance="outline" class="full-width-input">
+                  <mat-label>Mot de passe</mat-label> 
+                <input matInput type="password" placeholder="Mot de passe" formControlName="password" required>
+                <mat-error *ngIf="isFieldInvalid('password')">
+                    s'il vous plaît écrivez votre Mot de passe
+                </mat-error>
+              </mat-form-field>
+              <button mat-raised-button color="primary" class="full-width-input">Connexion</button>
+          <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    </div>
+    <div fxFlex="70%">
+      <img src="../../assets/imagedesk.jpg" alt="Smiley face" >
+    </div>
+  </div>
+  

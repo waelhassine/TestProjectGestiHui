@@ -1,0 +1,28 @@
+<h1 mat-dialog-title>Modifier Contact</h1>
+<form [formGroup]="editclientform" (ngSubmit)="onSubmit(editclientform.value)" >
+           <mat-form-field class="example-full-width">
+                <input matInput placeholder="Nom" formControlName="nom">
+                <mat-error *ngIf="hasError('nom', 'required')">Nom is required</mat-error>
+          </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <input matInput placeholder="Tel" formControlName="tel">
+         </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Gsm" formControlName="gsm">
+          <mat-error *ngIf="hasError('gsm', 'required')">Gsm is required</mat-error>
+        </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Ville" formControlName="ville">
+            <mat-error *ngIf="hasError('ville', 'required')">Ville is required</mat-error>
+          </mat-form-field>
+    
+        <div class="form-element" >
+            <div fxLayout="row" >
+              <button mat-raised-button fxFlex="50"  type="reset" >Reset</button>
+              <button mat-raised-button fxFlex="50" color="primary" [disabled]="editclientform.pristine || editclientform.invalid" type="submit"  >Modifier</button>
+            </div>
+        </div>
+
+      </form>

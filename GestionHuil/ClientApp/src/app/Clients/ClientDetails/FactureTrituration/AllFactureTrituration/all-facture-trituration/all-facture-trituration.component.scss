@@ -1,0 +1,60 @@
+.headercontact{
+    padding-left: 20px;
+}
+.button_create{
+    position: fixed;
+    bottom: 20px;
+    right: 20px; 
+
+}
+
+.form-element {
+    padding: 5px 5px 25px 2px;
+    width: 100%;
+  }
+  table {
+    width: 100%;
+    
+  }
+  
+th.mat-sort-header-sorted {
+    color: black;
+  }
+.container{
+    width: 95%;
+    margin-bottom: 20px;
+}
+
+.mat-row.hovered {
+  background: #eee;
+}
+
+.mat-row.highlighted {
+  background: #999;
+}
+.disable:hover{
+  cursor: not-allowed;
+  }
+  .disable:active{
+  pointer-events: none;
+  }
+  .col1 {
+    float:left; 
+}
+
+.col2 {
+    float:right; 
+    margin-left:30px;
+    column-gap: 9px;
+}
+.btnajouter {
+    // width: 150px!important;
+    // height: 45px;
+    // font-size:15px !important;
+    // min-width: unset!important;
+    font-size: 15px;
+    width: 120px;
+    height: 50px;
+    line-height: 48px;
+    padding-top: 2px;
+}

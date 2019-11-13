@@ -1,0 +1,36 @@
+<h1 mat-dialog-title>Ajouter Achat</h1>
+<form [formGroup]="createAchatForm" (ngSubmit)="onSubmit(createAchatForm.value)" >
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Trituration" aria-label="Client" matInput formControlName="triturationId" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let option of filteredTrituration | async" [value]="option" >
+                {{option.client.nom}} | Huille :{{option.huileRestante}} L | <small>Date: {{option.date | date:'yyyy-MM-dd'}}</small>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="hasError('triturationId', 'required')">Trituration is required</mat-error>
+          </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="number" placeholder="Qte Achete" max="{{QteRestantEnStock}}" (change)="onSearchChangea($event.target.value)" min="0"  formControlName="qteAchete">
+          <span matSuffix>L</span>
+      </mat-form-field>
+          <mat-form-field class="example-full-width">
+                <input matInput type="number" step="0.100" min="0" placeholder="Prix Unitaire"  formControlName="prix" (change)="onSearchChangeb($event.target.value)">
+         </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="number" placeholder="Montant Achat" formControlName="montantAchat">
+        <span matSuffix>DT</span>
+</mat-form-field>
+          <mat-form-field class="example-full-width">
+                <input matInput type="text" placeholder="Note" formControlName="note">
+          </mat-form-field>         
+         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="onNoClick()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="createAchatForm.pristine || createAchatForm.invalid" type="submit"  >Ajouter</button>
+          </div>
+        </div>
+
+      </form>

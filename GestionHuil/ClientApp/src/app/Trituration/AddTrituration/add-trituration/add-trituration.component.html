@@ -1,0 +1,61 @@
+<h1 mat-dialog-title>Ajouter Trituration</h1>
+<form [formGroup]="createclientForm" (ngSubmit)="onSubmit(createclientForm.value)" >
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Client" aria-label="Client" matInput formControlName="clientId" [matAutocomplete]="auto">
+            <mat-autocomplete  #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option (onSelectionChange)="callSomeFunction(option)" *ngFor="let option of filteredClients | async" [value]="option" >
+                {{option.nom}} |
+                <small>Tel: {{option.tel}}</small>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="hasError('clientId', 'required')">Client is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-label>Stockage Olives</mat-label>
+              <mat-select formControlName="stockageOlives" (selectionChange)="changeClient($event)"  multiple>
+                <mat-option *ngFor="let topping of ListStockageOlive" [value]="topping">{{topping.date}} | {{topping.poids}} Kg | {{topping.variete.name}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Poids" formControlName="poids">
+            <span matSuffix>Kg</span>
+        </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+                <input matInput type="number" step="1" min="0"  placeholder="Huile Obtenu"  formControlName="huileObtenu" (change)="onSearchChangea($event.target.value)">
+
+                <span matSuffix>L</span>
+                <mat-error *ngIf="hasError('huileObtenu', 'required')">Huile Obtenu is required</mat-error>
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+                <input matInput type="number" step="0.1" min="0" placeholder="Prix Unitaire"  formControlName="prixUnitaire" (change)="onSearchChangeb($event.target.value)">
+         </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Qte Livree" min="0" max="{{qteLocale}}"  (change)="onSearchChangec($event.target.value)" formControlName="qteLivree">
+                    <span matSuffix>L</span>
+                    <mat-error *ngIf="hasError('qteLivree', 'required')">Huile Livrée is required</mat-error>
+                    <mat-error *ngIf="hasError('qteLivree', 'max')">Huile Livrée is max</mat-error>
+         </mat-form-field>
+         <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Huile Restante" formControlName="huileRestante" >
+            <span matSuffix>L</span>
+        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Montant" formControlName="montant">
+            <span matSuffix>DT</span>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput type="number" placeholder="Rendement" formControlName="rendement" >
+            <span matSuffix>%</span>
+        </mat-form-field>
+           
+         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="fermerDialog()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="createclientForm.pristine || createclientForm.invalid" type="submit"  >Ajouter</button>
+          </div>
+        </div>
+
+      </form>

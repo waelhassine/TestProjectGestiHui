@@ -1,0 +1,121 @@
+<div class="headercontact">
+    <h1>Statistique</h1>
+   
+<div  fxLayout="row" fxLayoutAlign="end center" class="filter">
+                 
+         <mat-form-field appearance="outline">
+         <input matInput [matDatepicker]="picker" placeholder="Choose a date" (dateChange)="addEvent($event)">
+         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+         <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+                                     
+</div>
+                      
+                     
+<div fxLayout="row" >
+    <div fxFlex="20" class="showbox z-depth-2">    
+            <div fxFlex="88">
+                    <h3 matBadge="4" matBadgeOverlap="false">Trituration <br>Poids :{{statistiqueData.nbrTriturationTotal}} Kg</h3>
+                    <h4>Montant : {{statistiqueData.montantTriturationTotal}} DT</h4>
+            </div>  
+            <div fxFlex="22">
+                    <i class="material-icons md-48 z-depth-4 ">swap_horizontal_circle</i>
+            </div> 
+                         
+    </div>
+    <div fxFlex="20" class="showbox z-depth-2">
+            <div fxFlex="88">
+                    <h3 matBadge="4" matBadgeOverlap="false">Achat<br>Huile : {{statistiqueData.nbrAchatTotal}} L</h3>
+                    <h4>Montant  :  {{statistiqueData.montantAchatTotal}} DT</h4>
+            </div>  
+            <div fxFlex="22">
+                    <i class="material-icons testa md-48 z-depth-4 ">tab_unselected</i>
+            </div> 
+        </div>
+    <div fxFlex="20" class="showbox z-depth-2">
+            <div fxFlex="88">
+                    <h3 matBadge="4" matBadgeOverlap="false"> Vente <br>Huile :{{statistiqueData.nbrVenteTotal}} L</h3>
+                    <h4>Montant   : {{statistiqueData.montantVenteTotal}} DT</h4>
+            </div>  
+            <div fxFlex="22">
+                    <i class="material-icons testb md-48 z-depth-4 ">swap_vertical_circle</i>
+            </div> 
+            </div>
+    <div fxFlex="20" class="showbox z-depth-2">
+            <div fxFlex="88">
+                    <h3 matBadge="4" matBadgeOverlap="false">Grignons <br>Poids : {{statistiqueData.nbrGrigonsTotal}} Kg</h3>
+                    <h4>Montant  :  {{statistiqueData.montantGrigonsTotal}} DT</h4>
+            </div>  
+            <div fxFlex="22">
+                    <i class="material-icons testc md-48 z-depth-4 ">toll</i>
+            </div> 
+     </div>
+     <div fxFlex="20" class="showbox z-depth-2">
+            <div fxFlex="88">
+                    <h3 matBadge="4" matBadgeOverlap="false">Dépenses :<br></h3>
+                    <h4>Montant  : {{statistiqueData.montantCaiseTotal}} DT</h4>
+            </div>  
+            <div fxFlex="22">
+                    <i class="material-icons testc md-48 z-depth-4 ">branding_watermark</i>
+            </div> 
+     </div>
+</div>
+<div class="containera" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                <div fxFlex="50%">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                          <mat-card-title>Trituration</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                        <div  *ngIf="triturationdata" >
+                          <app-trituration-statistique [myData]="triturationdata"></app-trituration-statistique>
+                         </div>
+                        </mat-card-content>
+                      </mat-card>
+                 
+                </div>
+                <div fxFlex="50%">
+                    <mat-card class="example-card">
+                        <mat-card-header>
+                          <mat-card-title>Achat</mat-card-title>
+                        </mat-card-header>
+                        <mat-card-content>
+                        <div  *ngIf="achatdata" >
+                                <app-achat-statistique [myData]="achatdata"></app-achat-statistique>
+                        </div>
+                        </mat-card-content>
+                      </mat-card>
+                </div>
+        </div>
+        <div class="containera" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+                        <div fxFlex="50%">
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                  <mat-card-title>Vente</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                <div  *ngIf="ventedata" >
+                                           <app-vente-statistique [myData]="ventedata"></app-vente-statistique>
+                                </div>
+                                </mat-card-content>
+                              </mat-card>
+                         
+                        </div>
+                        <div fxFlex="50%">
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                  <mat-card-title>Grignons</mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                <div  *ngIf="grignonsdata" >
+                                    <app-grignons-statistique [myData]="grignonsdata"></app-grignons-statistique>
+                                 </div>
+                                </mat-card-content>
+                              </mat-card>
+                        </div>
+                      </div>
+
+
+
+
+</div>

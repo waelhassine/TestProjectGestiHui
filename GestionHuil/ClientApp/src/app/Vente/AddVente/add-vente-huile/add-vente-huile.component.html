@@ -1,0 +1,48 @@
+<h1 mat-dialog-title>Ajouter Vente Huile</h1>
+<form [formGroup]="createVenteForm" (ngSubmit)="onSubmit(createVenteForm.value)" >
+
+        <mat-form-field class="example-full-width">
+            <input type="text" placeholder="Client" aria-label="Client" matInput formControlName="clientId" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let option of filteredClients | async" [value]="option" >
+                {{option.nom}} |
+                <small>Tel: {{option.tel}}</small>
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="hasError('clientId', 'required')">Client is required</mat-error>
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+              <mat-label>Variete</mat-label>
+              <mat-select formControlName="varieteId">
+                <mat-option *ngFor="let option of varietebase" [value]="option.id">
+                  {{option.name}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="number" step="1" min="0" placeholder="Qte vente" formControlName="qte_Vente" (change)="onSearchChangea($event.target.value)">
+        <span matSuffix>L</span>
+        <mat-error *ngIf="hasError('qte_Vente', 'required')">Poids is required</mat-error>
+    </mat-form-field>
+        <mat-form-field class="example-full-width">
+                <input matInput type="number" step="0.1" min="0" placeholder="Prix Unitaire" formControlName="prix_Unitaire" (change)="onSearchChangeb($event.target.value)">
+                <span matSuffix>DT</span>
+                <mat-error *ngIf="hasError('prix_Unitaire', 'required')">Prix Unitaire is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput type="number" step="1" min="0" placeholder="Qte Bidon" formControlName="qte_bidon" (change)="onSearchChangee($event.target.value)">
+          </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <input matInput type="number" step="1" min="0" placeholder="Prix Bidon" formControlName="prix_bidon" (change)="onSearchChangec($event.target.value)">
+        </mat-form-field>
+            <mat-form-field class="example-full-width">
+                    <input matInput type="number" placeholder="Montant Vente" formControlName="montantVente">
+                </mat-form-field>         
+        <div class="example-full-width">
+            <div fxLayout="row" >
+            <button mat-raised-button fxFlex="50"  (click)="onNoClick()"  >Reset</button>
+          <button mat-raised-button fxFlex="50" color="primary" [disabled]="createVenteForm.pristine || createVenteForm.invalid" type="submit"  >Ajouter</button>
+          </div>
+        </div>
+
+      </form>
